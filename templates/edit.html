@@ -1,0 +1,31 @@
+{% extends 'base.html' %}
+{% load static %}
+{% block content %}
+<style>
+    #bg{
+      background-repeat: no-repeat;
+      background-size: 1800px 900px;
+      background-position: top;
+      background-attachment: fixed;
+  }
+  </style>
+  <body id="bg"  style="background-image:url( {% static 'doctor.jpg'%})"></body>
+{% if messages %}
+            <ul>
+            {% for message in messages %}
+                <li>{{ message }}</li>
+            {% endfor %}
+            </ul>
+{% endif %}
+<form method="POST" action="update">
+    {% csrf_token %}
+    <h1>ENTER PATIENT Id:<input placeholder="Patient Id" type="text" name="PATIENT_ID" required/><br>
+    <h1>ENTER DOCTOR Id :<input  placeholder="DOCTOR Id" type="text" name="DOCTOR_ID" required/><br>
+    <h1>ENTER DATE      :<input  type="date" name="DATE" required/><br>
+    <h1>ENTER MEDICINE  :<input  placeholder="PHARMA" type="text" name="MEDICINE"><br>
+    <h1>ENTER LAB       :<input  placeholder="TESTS" type="text" name="LAB" ><br>
+    <h1>ENTER REPORT    :<input  placeholder="PRESCREPTION" type="text" name="REPORT" ><br>
+    <h1>ENTER FEE       :<input  type="text" name="FEE" ><br>
+    <button type="submit">Submit</button>
+</form>
+{% endblock %}

@@ -1,0 +1,119 @@
+
+{% extends 'base.html' %}
+{% load static %}
+{% block content %}
+
+<style>
+  #bg{
+    background-repeat: no-repeat;
+    background-size: 1800px 900px;
+    background-position: top;
+    background-attachment: fixed;
+}
+</style>
+<body id="bg"  style="background-image:url( {% static 'reception.jpg'%})">
+<style>
+  body {background-color: rgb(128, 128, 128);}
+  #bg{
+    background-repeat: no-repeat;
+    background-size: 1800px 900px;
+    background-position: top;
+    background-attachment: fixed;
+  }
+  .ab{
+    margin-left: 10%;
+    float: left;
+  }
+  .cd{
+    margin-right: 5%;
+    float: right;
+  }
+  #bill{
+    float: right;
+  }
+  table {
+    font-family: arial, sans-serif;
+    border-collapse: collapse;
+    background-color: rgb(186, 229, 224);
+    width: 100%;
+  }
+  
+  td {
+    border: 4px solid #dddddd;
+    font-size: large;
+    text-align: left;
+    padding: 8px;
+    color: black;
+  }
+  th {
+      border: 4px solid #dddddd;
+      font-size: x-large;
+      text-align: left;
+      padding: 8px;
+      color: black;
+    }
+</style>
+{% if messages %}
+            <ul>
+            {% for message in messages %}
+                <li>{{ message }}</li>
+            {% endfor %}
+            </ul>
+{% endif %}
+<form method='post' action="home">
+  <button type="submit">logout</button>
+</form>
+
+
+<div id="bill">
+<form method='post' action="bill">
+  <button type="submit">GENERATE BILL</button>
+</form>
+</div>
+<div class="ab"><h1> NEW PATIENT  </h1>
+  <form method='post' action='recep'>
+      {% csrf_token %}
+            <h3>ENTER DATE:<input type="date"  name="DATE_" required><br>
+              <h3>ENTER PATIENT_NAME :<input type="text"  name="PATIENT_NAME" required><br>
+                <h3>ENTER DOCTOR_ID :<input type="text"  name="DOCTOR_ID" required><br>
+                    <h3>ENTER AMOUNT :<input type="text"  name="RECEPTION_AMT"><br>
+      <button type="submit">enter</button>
+  </form></div>
+  <div class="cd"><h1> Take An Appointment  </h1>
+    <form method='post' action='recep'>
+        {% csrf_token %}
+            <h3>ENTER  PATIENT_ID:<input type="text"  name="PATIENT_ID1" required><br>
+              <h3>ENTER DATE:<input type="date"  name="DATE_1" required><br>
+                  <h3>ENTER DOCTOR_ID :<input type="text"  name="DOCTOR_ID1" required><br>
+        <button type="submit">enter</button>
+    </form></div>
+
+<br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br>
+
+<h1>Search Old Database</h1>
+  <form method='post' action='recep'>
+    <h3>enter patient_id  :<input type="text"  name="patient_id" ><br>
+    <button type="submit">enter</button>
+  </form>
+  <br>
+  <br>
+  <br>
+<h1>Results </h1>
+    <table>
+        <tr>
+            {% for he in head %}
+            <th>{{he}}</th>
+            {% endfor %}
+          </tr>
+        {% for co in col %}
+      <tr>
+            {% for i in co %}
+            <td>{{i}}</td>
+            {% endfor %}
+        
+      </tr>
+        {% endfor %}
+    </table>
+</div>
+</body>
+{% endblock %}

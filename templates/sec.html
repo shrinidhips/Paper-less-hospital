@@ -1,0 +1,15 @@
+{% extends 'base.html' %}
+{% load static %}
+{% block content %}
+<head>
+    <script type = "text/javascript" >  
+        function preventBack() { window.history.forward(); }  
+        setTimeout("preventBack()", 0);  
+        window.onunload = function () { null };  
+</script>
+</head>
+<body>
+    <h1>This page is for security purpose</h1>
+    <a href='http://127.0.0.1:8000'><h3>click here to close session and logout</h3></a>
+</body>
+{% endblock %}

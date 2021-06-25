@@ -1,0 +1,29 @@
+{% extends 'base.html' %}
+{% load static %}
+{% block content %}
+<style>
+    #bg{
+      background-repeat: no-repeat;
+      background-size: 1800px 900px;
+      background-position: top;
+      background-attachment: fixed;
+  }
+  </style>
+  <body id="bg"  style="background-image:url( {% static 'pharmacy2.jpg'%})">
+{% if messages %}
+            <ul>
+            {% for message in messages %}
+                <li>{{ message }}</li>
+            {% endfor %}
+            </ul>
+{% endif %}
+<form method="POST" action="update1">
+    {% csrf_token %}
+    <h1>ENTER PATIENT Id:<input placeholder="Patient Id" type="text" name="PATIENT_ID" required/><br>
+    <h1>ENTER DATE      :<input  type="date" name="DATE" required/><br>
+    <h1>ENTER AVALABLITY:<input  placeholder="Y/N" type="text" name="AVA"><br>
+    <h1>ENTER AMOUNT       :<input  type="text" name="FEE" ><br>
+    <button type="submit">Submit</button>
+</form>
+</body>
+{% endblock %}
